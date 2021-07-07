@@ -1,0 +1,86 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 08, 2021 at 01:03 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `truck`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trucks`
+--
+
+CREATE TABLE `trucks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `type_of_vec` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `classic_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `destination` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `information` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trucks`
+--
+
+INSERT INTO `trucks` (`id`, `user_id`, `type_of_vec`, `classic_no`, `destination`, `information`, `created_at`, `updated_at`) VALUES
+(1, 1, 'M/BENZ', '586775', 'SATTELITE', 'TRUCK CARRING WATER TANK TRUCK(279497)', '2021-07-07 06:05:02', '2021-07-07 06:05:02'),
+(2, 1, 'VOLVO', '108386', 'SATTELITE', 'TRUCK CARRING 300KG CRANE', '2021-07-07 06:07:12', '2021-07-07 06:07:12'),
+(3, 1, 'IVECO', '184712', 'SATTELITE', 'TRUCK CARRING WATER ONE MAN HYAP TRUCK', '2021-07-07 06:09:38', '2021-07-07 06:09:38'),
+(4, 1, 'DAF', '483157', 'SATTELITE', 'REFUSE DUMPER', '2021-07-07 06:10:15', '2021-07-07 06:10:15'),
+(5, 1, 'MARIRUS DEUTZ', '096474', 'SATTELITE', 'TIPPER DUMPER 10T', '2021-07-07 06:11:11', '2021-07-07 06:11:11'),
+(6, 1, 'VOLVO', '506074', 'SATTELITE', 'TRUCK CARRING VOLVO LOADED WITH GENERATOR ON TOP', '2021-07-07 06:12:09', '2021-07-07 06:12:09'),
+(7, 1, 'DAF', '611290', 'SATTELITE', 'DUMPER/TIPPER 60TONS 12T BLUE', '2021-07-07 06:13:25', '2021-07-07 06:13:25'),
+(8, 1, 'DAF', '603025', 'SATTELITE', 'TRUCK MOUNTED WITH BIG SIZE HYAP', '2021-07-07 06:15:00', '2021-07-07 06:15:00'),
+(9, 2, 'DAF', '635506', 'SATTELITE', 'REFUSE DUMPER', '2021-07-07 06:15:29', '2021-07-07 06:15:29'),
+(10, 1, 'DAF', '577464', 'SATTELITE', 'LPG TANKER 18FT', '2021-07-07 06:16:22', '2021-07-07 06:16:22'),
+(11, 2, 'RENUALT', '100811', 'SATTELITE', 'REFUSE DUMPER', '2021-07-07 06:17:06', '2021-07-07 06:17:06'),
+(12, 2, 'VOLVO', '179528', 'SATTELITE', 'LPG TANKER 18FT', '2021-07-07 06:17:59', '2021-07-07 06:17:59'),
+(13, 1, 'DAF', '702357', 'SATTELITE', 'TRUCK CARRING DAF TIPPER', '2021-07-07 06:18:35', '2021-07-07 06:18:35'),
+(14, 1, 'MAN', '159943', 'SATTELITE', 'TIPPER DUMPER 10T', '2021-07-07 06:19:16', '2021-07-07 06:19:16'),
+(15, 1, 'SCANIA', '403366', 'SATTELITE', 'HYAP TRUCK BIG SIZE', '2021-07-07 06:20:51', '2021-07-07 06:20:51'),
+(16, 1, 'NISSAN CAPSTAR', '121021', 'SATTELITE', 'MINI TRUCK MOUNTED WITH SMALL HYAP CARRING RED CAR', '2021-07-07 06:21:59', '2021-07-07 06:21:59');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `trucks`
+--
+ALTER TABLE `trucks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `trucks`
+--
+ALTER TABLE `trucks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
