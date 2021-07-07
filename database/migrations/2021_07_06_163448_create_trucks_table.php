@@ -15,6 +15,7 @@ class CreateTrucksTable extends Migration
     {
         Schema::create('trucks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->string('type_of_vec');
             $table->string('classic_no');
             $table->string('destination');

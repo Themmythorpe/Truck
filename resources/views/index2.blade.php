@@ -80,6 +80,12 @@
                     @if (session()->has('success'))
                         <div class="alert alert-success text-center remove">Created Successfully!</div>
                     @endif
+                    @if (session()->has('editSuccess'))
+                        <div class="alert alert-success text-center remove">Edited Successfully!</div>
+                    @endif
+                    @if (session()->has('deleteSuccess'))
+                        <div class="alert alert-success text-center remove">Deleted Successfully!</div>
+                    @endif
                     <div class="ecommerce-widget">
                         <div class="row">
                             <!-- ============================================================== -->
@@ -98,6 +104,7 @@
                                                         <th>Classic Number</th>
                                                         <th>Destination</th>
                                                         <th>Information</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -110,6 +117,16 @@
                                                             <td>{{ $truck->classic_no}}</td>
                                                             <td>{{ $truck->destination}}</td>
                                                             <td>{{ $truck->information}}</td>
+                                                            @if ($truck->user_id == Auth::user()->id)
+                                                                <td>
+                                                                    <button class="btn btn-success" data-toggle="modal" data-target="#editTruck{{ $truck->id }}"><i class="fas fa-edit"></i> Edit</button> 
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteTruck{{ $truck->id }}"><i class="fas fa-trash"></i> Delete</button> 
+                                                                </td>
+                                                                @else
+                                                                <td>This wasn't added by you</td>
+                                                            @endif
                                                         </tr>
                                                         @endforeach
                                                     @endif
@@ -118,6 +135,100 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <!-- ============================================================== -->
+                                <!-- modal  -->
+                                <!-- ============================================================== -->
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="card">
+                                        <!-- Modal -->
+                                        @foreach ($trucks as $truck)
+                                            <div class="modal fade" id="editTruck{{ $truck->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <form action="/edit_truck/{{ $truck->id }}" method="POST" id="basicform"  style="margin: 0;">
+                                                            @csrf
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editModalLabel">Edit Truck</h5>
+                                                                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </a>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="inputTov">Type of Vehicle</label>
+                                                                    <input id="inputTov" type="text" name="type_of_vec" required value="{{ $truck->type_of_vec }}" placeholder="Enter Type of Vehicle" class="form-control">
+                                                                    <p class="error">{{ $errors->first('type_of_vec') }}</p>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inputCn">Classic Number</label>
+                                                                    <input id="inputCn" type="number" name="classic_no" required value="{{ $truck->classic_no }}" placeholder="Enter Classic Number" class="form-control">
+                                                                    <p class="error">{{ $errors->first('classic_no') }}</p>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inputDest">Destination</label>
+                                                                    <input id="inputDest" type="text" value="{{ $truck->destination }}" required placeholder="Enter Destination" name="destination" class="form-control">
+                                                                    <p class="error">{{ $errors->first('destination') }}</p>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inpuInfo">Information</label>
+                                                                    <input id="inpuInfo" data-parsley-equalto="#inputInfo" type="text" required name="information" value="{{ $truck->information }}" placeholder="Enter Information" class="form-control">
+                                                                    <p class="error">{{ $errors->first('information') }}</p>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                
+                                                                    <button type="submit" href="#" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- modal  -->
+                                <!-- ============================================================== -->
+                                <div class="row">
+                                    <!-- ============================================================== -->
+                                    <!-- modal  -->
+                                    <!-- ============================================================== -->
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="card">
+                                            @foreach ($trucks as $truck)
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="deleteTruck{{ $truck->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                                                                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </a>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Woohoo, You are readng this text in a modal! Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="#" class="btn btn-secondary" data-dismiss="modal">Close/No</a>
+                                                                <form action="/delete_truck/{{ $truck->id }}" method="POST" style="margin: 0;">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" href="#" class="btn btn-primary">Yes</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <!-- ============================================================== -->
+                                    <!-- modal  -->
+                                    <!-- ============================================================== -->
                             </div>
                             <!-- ============================================================== -->
                             <!-- end basic table  -->

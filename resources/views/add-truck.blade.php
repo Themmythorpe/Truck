@@ -72,15 +72,9 @@
                                                 <p class="error">{{ $errors->first('information') }}</p>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                                                    <label class="be-checkbox custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Remember me</span>
-                                                    </label>
-                                                </div>
                                                 <div class="col-sm-6 pl-0">
                                                     <p class="text-right">
                                                         <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                                        <button class="btn btn-space btn-secondary">Cancel</button>
                                                     </p>
                                                 </div>
                                             </div>

@@ -103,8 +103,26 @@ class HomeController extends Controller
             'destination' => 'required',
             'information' => 'required',
         ]);
+        $data['user_id'] = Auth::user()->id;
         truck::create($data);
         return redirect('/dashboard')->with('success','Created Successfully!');
+    }
+    public function edit_truck($id)
+    {
+        $data = request()->validate([
+            'type_of_vec' => 'required',
+            'classic_no' => 'required',
+            'destination' => 'required',
+            'information' => 'required',
+        ]);
+        $data['user_id'] = Auth::user()->id;
+        truck::where('id', $id)->update($data);
+        return redirect('/dashboard')->with('editSuccess','Edited Successfully!');
+    }
+    public function delete_truck($id)
+    {
+        truck::where('id', $id)->delete();
+        return redirect('/dashboard')->with('deleteSuccess','Deleted Successfully!');
     }
     public function bsq(Request $request)
     {

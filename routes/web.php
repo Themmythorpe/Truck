@@ -34,6 +34,10 @@ Route::get('/add_truck', 'HomeController@add_truckPage')->middleware('auth');
 
 Route::post('/add_truck', 'HomeController@add_truck')->middleware('auth');
 
+Route::post('/edit_truck/{id}', 'HomeController@edit_truck')->middleware('auth');
+
+Route::delete('/delete_truck/{id}', 'HomeController@delete_truck')->middleware('auth');
+
 Route::get('/search', 'HomeController@sq');
 
 Route::get('/search_query', 'HomeController@bsq')->middleware('auth');
